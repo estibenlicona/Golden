@@ -1,0 +1,39 @@
+.btn-entrar-nav {
+	position: absolute;
+	right: 15px;
+}
+
+.container-detail-player {
+	height: 160px;
+}
+
+.text-red {
+	color: #FF0000;
+}
+
+.text-orange {
+	color: #FF8000;
+}
+
+.text-yellow {
+	color: #FFFF00;
+}
+
+.text-green {
+	color: #008000;
+}
+
+.btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.form-nav{
+	position: absolute;
+	right: 15px;
+}
+
+.element-nav {
+	width: 130px;
+	margin-right: 10px;
+} 
