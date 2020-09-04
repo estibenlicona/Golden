@@ -25,6 +25,7 @@ class Jugador extends CI_Controller {
 	{
 		$this->load->model("players/Player");
         $oPlayer = new Player();
+        $oPlayer->update_id($id);
         $aData = $oPlayer->format_psd($id);
 		$aData['user'] = $this->session->userdata();
 

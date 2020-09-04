@@ -3,8 +3,8 @@
    		<span class="navbar-toggler-icon"></span>
   	</button>
   	<a class="navbar-brand text-light" href="<?= base_url('/jugadores') ?>">Jugadores</a>
+  	<!--<form id="login-form" class="d-flex flex-row-reverse form-nav">
   	<?php if (empty($sess_id)): ?>	
-  	<form id="login-form" class="d-flex flex-row-reverse form-nav">
   		<button id="login" class="btn btn-light" type="button">Entrar</button>
   		<input type="text" name="pass" class="form-control element-nav password" id="pass" placeholder="Password" value="123">
   		<input type="text" name="user" class="form-control element-nav" id="user" placeholder="Username" value="admin">
@@ -14,6 +14,7 @@
   			<button id="out" class="btn btn-danger" type="button">Salir</button>
   		</div>
   	<?php endif ?>
+  -->
 </nav>
 <script type="text/javascript">
 	$('#login-form').disableAutoFill({
