@@ -32,6 +32,7 @@ class Jugador extends CI_Controller {
 		$this->load->view('head', array('title' => 'Jugadores'));
 		$this->load->view('nav');
 		$this->load->view('jugador/psd', $aData);
+		
 	}
 
 
