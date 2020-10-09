@@ -10,12 +10,12 @@
 								FROM jugadores WHERE id = ?;";
 		
 
-		const PLAYER_INFO = "SELECT j.aggression, j.name, j.shirt_name, j.nationality, j.age, j.height, j.weight, j.injury_tolerance, j.side, j.foot, j.condition_fitness, j.weak_foot_accuracy, j.weak_foot_frequency, j.positions, j.special_abilities, js.id as id_sofifa FROM jugadores j LEFT JOIN jugadores_sofifa js ON j.id = js.id_psd WHERE j.id = ?;";
+		const PLAYER_INFO = "SELECT j.valor, j.aggression, j.name, j.shirt_name, j.nationality, j.age, j.height, j.weight, j.injury_tolerance, j.side, j.foot, j.condition_fitness, j.weak_foot_accuracy, j.weak_foot_frequency, j.positions, j.special_abilities, js.id as id_sofifa FROM jugadores j LEFT JOIN jugadores_sofifa js ON j.id = js.id_psd WHERE j.id = ?;";
 
 		const GET_ABILITIES_SOFIFA = "SELECT attack,defence,balance,stamina,top_speed,acceleration,response,agility,dribble_accuracy,dribble_speed,short_pass_accuracy,short_pass_speed,long_pass_accuracy,long_pass_speed,shot_accuracy,shot_power,shot_technique,free_kick_accuracy,curling,header,jump,technique,mentality,keeper_skills,teamwork
 								FROM jugadores_sofifa WHERE id = ?;";
 
-		const PLAYER_INFO_SOFIFA = "SELECT js.aggression, js.name, js.shirt_name, js.nationality, js.age, js.height, js.weight, js.injury_tolerance, js.side, js.foot, js.condition_fitness, js.weak_foot_accuracy, js.weak_foot_frequency, js.positions, js.special_abilities, j.id id_psd FROM jugadores_sofifa js LEFT JOIN jugadores j ON js.id_psd = j.id WHERE js.id = ?;";
+		const PLAYER_INFO_SOFIFA = "SELECT js.valor, js.aggression, js.name, js.shirt_name, js.nationality, js.age, js.height, js.weight, js.injury_tolerance, js.side, js.foot, js.condition_fitness, js.weak_foot_accuracy, js.weak_foot_frequency, js.positions, js.special_abilities, j.id id_psd FROM jugadores_sofifa js LEFT JOIN jugadores j ON js.id_psd = j.id WHERE js.id = ?;";
 
 		
 		function __construct()
@@ -315,14 +315,19 @@
 
 					$iPrecio = array_sum($aValoresFinales) * 8000000;
 			}
+
+			// Valor configurado manualmente
+			if(!empty($oPlayer->valor) || !is_null($oPlayer->valor)) $iPrecio = $oPlayer->valor;
 			
 			$oPlayer->valor_maximo = $iPrecio + ($iPrecio * 0.5); 
 			$oPlayer->valor_minimo = $iPrecio - ($iPrecio * 0.5); 
 
 			$fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 			$oPlayer->valor = $fmt->formatCurrency($iPrecio, "USD");
+			$oPlayer->valor_simple = $iPrecio;
 			$oPlayer->valor_maximo = $fmt->formatCurrency($oPlayer->valor_maximo, "USD");
 			$oPlayer->valor_minimo = $fmt->formatCurrency($oPlayer->valor_minimo, "USD");
+			$oPlayer->id = $id;
 
 			$aSpecialAbilities = preg_split('/\n|\r\n?/', rtrim(ltrim($oPlayer->special_abilities)));
 			$aData = array();
@@ -586,14 +591,19 @@
 					$iPrecio = array_sum($aValoresFinales) * 8000000;
 			}
 
+			// Valor configurado manualmente
+			if(!empty($oPlayer->valor) || !is_null($oPlayer->valor)) $iPrecio = $oPlayer->valor;
+
 			$oPlayer->valor_maximo = $iPrecio + ($iPrecio * 0.5); 
 			$oPlayer->valor_minimo = $iPrecio - ($iPrecio * 0.5); 
 			
 
 			$fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 			$oPlayer->valor = $fmt->formatCurrency($iPrecio, "USD");
+			$oPlayer->valor_simple = $iPrecio;
 			$oPlayer->valor_maximo = $fmt->formatCurrency($oPlayer->valor_maximo, "USD");
 			$oPlayer->valor_minimo = $fmt->formatCurrency($oPlayer->valor_minimo, "USD");
+			$oPlayer->id = $id;
 			
 			$aSpecialAbilities = preg_split('/\n|\r\n?/', rtrim(ltrim($oPlayer->special_abilities)));
 			$aData = array();

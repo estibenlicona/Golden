@@ -30,7 +30,7 @@ class Jugador extends CI_Controller {
         $aData = $oPlayer->format_psd($id);
 		$aData['user'] = $this->session->userdata();
 
-		$this->load->view('head', array('title' => 'Jugadores'));
+		$this->load->view('head', array('title' => 'PSD'));
 		$this->load->view('nav');
 		$this->load->view('jugador/psd', $aData);
 		
@@ -42,6 +42,8 @@ class Jugador extends CI_Controller {
 		$this->load->model("players/Player");
 		$oPlayer = new Player();
         $aData = $oPlayer->format_sofifa($id);
+		$this->load->view('head', array('title' => 'Sofifa'));
+		$this->load->view('nav');
 		$this->load->view('jugador/sofifa', $aData);
 	}
 

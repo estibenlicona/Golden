@@ -48,6 +48,24 @@ class Users extends REST_Controller
         $this->session->unset_userdata('login');
         header("Location: " . base_url('/jugadores'));
     }
+
+    public function updatevalueplayer_post()
+    {    
+        // Post
+        $iId = $this->post('jugador');
+        $sValor = $this->post('valor');
+        $sProveedor = $this->post('proveedor');
+        
+        // Loads
+        $this->load->model("users/User");
+
+        // Login
+        $oUser = new User();
+        $oUser->updateValue($iId, $sValor, $sProveedor);
+
+        header("Location: " . base_url("/jugador/{$sProveedor}/{$iId}"));
+
+    }
 }
 
  ?>

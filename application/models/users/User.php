@@ -12,7 +12,6 @@
 		{
 			parent::__construct();
 			$this->load->database();
-			$this->load->library('session');
 		}
 
 		public function login($sUser, $sPass)
@@ -20,8 +19,30 @@
 			$sSql = User::GET_USER_LOGIN;
 			$oQuery = $this->db->query($sSql, array($sUser, $sPass));
 			$oUser = $oQuery->row();
-			
+
 			return $oUser; 
+		}
+
+		public function updateValue($iId, $sValor, $sProveedor)
+		{
+			try {
+
+				$oJugador = new stdClass();
+				$oJugador->valor = $sValor;
+				$this->db->where('id', $iId);
+				
+				if ($sProveedor == 'psd') {
+					$this->db->update('jugadores', $oJugador);
+				}
+
+				if ($sProveedor == 'sofifa') {
+					$this->db->update('jugadores_sofifa', $oJugador);
+				}
+
+				return true;		
+			} catch (Exception $e) {
+				return false;
+			}
 		}
 	}
  ?>

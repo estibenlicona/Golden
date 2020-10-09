@@ -11,11 +11,6 @@
 	</div>
 	<hr>
 	<div class="row">
-		<div class="col-md-12">
-			
-		</div>
-	</div>
-	<div class="row">
 		<div class="col-md-6">
 			<div class="card d-flex flex-row bg-dark text-light p-4">
 				<div style="width: 50%">
@@ -125,6 +120,7 @@
 			</div>	
 		</div>
 		<div class="col-md-6">
+			<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Configurar</button>
 			<?php if (!is_null($oPlayer->id_sofifa)): ?>
 				<button id="sofifa" player_id="<?php echo $oPlayer->id_sofifa?>" class="btn btn-dark float-rigth">SOFIFA</button>	
 			<?php endif ?>
@@ -144,6 +140,31 @@
 		</div>
 	</div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form action="<?= base_url('api/users/updatevalueplayer') ?>" method="POST">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="staticBackdropLabel">Editar valor</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        	<input type="text" class="form-control" name="proveedor" value="psd" style="display:none">
+	        	<input type="text" class="form-control" name="jugador" value="<?php echo $oPlayer->id ?>" style="display:none">
+	        	<input type="text" class="form-control" name="valor" value="<?php echo $oPlayer->valor_simple ?>">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+	        <button type="submit" class="btn btn-dark">Guardar</button>
+	      </div>
+	    </div>
+    </form>
+  </div>
+</div>
+
 <script type="text/javascript">
 	
 	// Btn Ver Jugador
