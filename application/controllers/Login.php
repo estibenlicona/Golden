@@ -7,6 +7,7 @@ class Login extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->database();
+		$this->load->library('session');
 	}
 
 	public function start()

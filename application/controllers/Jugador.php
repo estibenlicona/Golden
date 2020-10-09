@@ -18,6 +18,7 @@ class Jugador extends CI_Controller {
 
 		$aData = array();
 		$aData['aHabilidades'] = $aHabilidades;
+		$this->load->view('nav');
 		$this->load->view('jugador/index', $aData);
 	}
 

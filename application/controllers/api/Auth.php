@@ -30,36 +30,15 @@ class Auth extends REST_Controller
         
         // Loads
         $this->load->model("users/User");
-        $this->load->library("Authorization_Token");
 
         // Login
         $oUser = new User();
         $oData = $oUser->login($sUser, $sPass);
 
-        if (!is_null($oData)) {
-            //Generate token
-            $sToken = $this->authorization_token->generateToken($oData);
-
-            //Response
-            $this->response([
-                    'message' => 'Autenticación exitosa.',
-                    'token' => $sToken
-                ], 
-                REST_Controller::HTTP_OK
-            );
-        }else{
-            //Response
-            $this->response([
-                    'message' => 'Autenticación fallida'
-                ], 
-                REST_Controller::HTTP_BAD_REQUEST
-            );
-        }
-
-
+print_r($oData);
     }
 
-    public function logout_post()
+    public function logout_get()
     {
         $this->response([
                 'message' => "Sesión terminada."

@@ -13,43 +13,40 @@ class Users extends REST_Controller
         $this->load->library('session');
     }
 
+    public function index_get()
+    {
+        header("Location: " . base_url('/login/start'));
+    }
+
     public function login_post()
     {    
         // Post
-        $sUser = $this->post('email');
+        $sUser = $this->post('username');
         $sPass = $this->post('password');
         
         // Loads
         $this->load->model("users/User");
-        $this->load->library("Authorization_Token");
 
         // Login
         $oUser = new User();
         $oData = $oUser->login($sUser, $sPass);
 
-        //Generate token
-        $sToken = $this->authorization_token->generateToken($oData);
+        
+        if ($oData) {
+            $this->session->set_userdata('login', true);
+            header("Location: " . base_url('/jugadores'));
+        }else{
+            $this->session->unset_userdata('login');
+            $this->session->set_flashdata('error', 'Datos incorrectos.');
+            header("Location: " . base_url('/login/start'));
+        }
 
-        //Response
-        $this->response([
-                'message' => 'Autenticación exitosa',
-                'data' => [
-                    'token' => $sToken
-                ]
-            ], 
-            REST_Controller::HTTP_OK
-        );
     }
 
-    public function out_post()
+    public function out_get()
     {
-        $this->session->sess_destroy();
-        $this->response([
-                'status' => TRUE,
-                'message' => "Sesión terminada."
-            ], 
-            REST_Controller::HTTP_OK
-        );
+        $this->session->unset_userdata('login');
+        header("Location: " . base_url('/jugadores'));
     }
 }
 

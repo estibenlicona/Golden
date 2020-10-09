@@ -122,19 +122,6 @@
 
 </style>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <!--<a class="navbar-brand text-light" href="<?= base_url('/team') ?>">Team</a> -->
-	  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-	      <li class="nav-item active">
-	        <a class="nav-link text-light" href="<?= base_url('/jugadores') ?>">Jugadores</a>
-	      </li>
-	    </ul>
-	  </div>
-	</nav>
 	<div class="container pt-3 pl-0 pr-0 pb-5">
 		<h4>Buscar por nombre</h4>
 		<hr/>

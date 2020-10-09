@@ -6,11 +6,7 @@
 	class User extends CI_Model
 	{
 
-		const GET_USER_LOGIN = "SELECT 
-								 user as name,
-								 'https://lh3.googleusercontent.com/ogw/ADGmqu9B9LI88LPJVJnmhY8cq6Drg_BxquLJLS-rF-es=s32-c-mo' as 
-								 picture 
-								FROM users WHERE user = ? AND pass = ?;";
+		const GET_USER_LOGIN = "SELECT * FROM users WHERE user = ? AND pass = ?;";
 		
 		function __construct()
 		{
@@ -24,7 +20,7 @@
 			$sSql = User::GET_USER_LOGIN;
 			$oQuery = $this->db->query($sSql, array($sUser, $sPass));
 			$oUser = $oQuery->row();
-
+			
 			return $oUser; 
 		}
 	}
