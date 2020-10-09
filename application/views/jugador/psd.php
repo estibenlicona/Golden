@@ -120,7 +120,9 @@
 			</div>	
 		</div>
 		<div class="col-md-6">
-			<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Configurar</button>
+			<?php if ($this->session->userdata('login')): ?>
+				<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Configurar</button>
+			<?php endif ?>
 			<?php if (!is_null($oPlayer->id_sofifa)): ?>
 				<button id="sofifa" player_id="<?php echo $oPlayer->id_sofifa?>" class="btn btn-dark float-rigth">SOFIFA</button>	
 			<?php endif ?>
